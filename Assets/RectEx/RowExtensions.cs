@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Linq;
 using RectEx.Internal;
 
@@ -12,11 +13,19 @@ namespace RectEx {
 		}
 
 		public static Rect[] Row(this Rect rect, IEnumerable<float> weights, IEnumerable<float> widthes, float space = 5) {
-            rect = rect.Abs();
+            if (weights == null){
+                throw new ArgumentException("Weights is null. You must specify it");
+            }
 
             if (widthes == null){
                 widthes = weights.Select(x => 0f);
             }
+
+            rect = rect.Abs();
+            return RowSafe(rect, weights, widthes, space);
+        }
+
+        private static Rect[] RowSafe(Rect rect, IEnumerable<float> weights, IEnumerable<float> widthes, float space = 5) {
             var cells = weights.Merge(widthes, (weight, width) => new Cell(weight, width)).Where( cell => cell.HasWidth);
 
             float weightUnit = GetWeightUnit(rect.width, cells, space);
