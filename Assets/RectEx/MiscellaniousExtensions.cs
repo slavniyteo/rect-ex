@@ -18,5 +18,14 @@ namespace RectEx {
             return rect;
         }
 
+        public static Rect Invert(this Rect rect){
+            return new Rect(
+                x: rect.y,
+                y: rect.x,
+                width: rect.height,
+                height: rect.width
+            );
+        }
+
 	}
 }
