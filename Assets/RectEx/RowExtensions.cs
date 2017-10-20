@@ -9,27 +9,81 @@ namespace RectEx {
 	public static class RowExtensions {
 
         public static Rect[] Row(this Rect rect, int count, float space = 5){
-            return Row(rect, Enumerable.Repeat(1f, count), Enumerable.Repeat(0f, count), space);
+            rect = rect.Abs();
+            switch (count) {
+                case 1: {
+                    return new Rect[] {rect};
+                }
+                case 2: {
+                    return RowTwoSlices(rect, space);
+                }
+                case 3: {
+                    return RowThreeSlices(rect, space);
+                }
+                default: {
+                    var weights = Enumerable.Repeat(1f, count).ToArray();
+                    var widthes = Enumerable.Repeat(0f, count).ToArray();
+                    return Row(rect, weights, widthes, space);
+                }
+            }
         }
 
-		public static Rect[] Row(this Rect rect, IEnumerable<float> weights, float space = 5){
+		public static Rect[] Row(this Rect rect, float[] weights, float space = 5){
 			return Row(rect, weights, null, space);
 		}
 
-		public static Rect[] Row(this Rect rect, IEnumerable<float> weights, IEnumerable<float> widthes, float space = 5) {
+		public static Rect[] Row(this Rect rect, float[] weights, float[] widthes, float space = 5) {
             if (weights == null){
                 throw new ArgumentException("Weights is null. You must specify it");
             }
 
             if (widthes == null){
-                widthes = weights.Select(x => 0f);
+                widthes = Enumerable.Repeat(0f, weights.Length).ToArray();
             }
 
             rect = rect.Abs();
             return RowSafe(rect, weights, widthes, space);
         }
 
-        private static Rect[] RowSafe(Rect rect, IEnumerable<float> weights, IEnumerable<float> widthes, float space = 5) {
+        private static Rect[] RowTwoSlices(Rect rect, float space = 5) {
+            var first = new Rect(
+                x: rect.x,
+                y: rect.y,
+                width: (rect.width - space) / 2,
+                height: rect.height
+            );
+            var second = new Rect(
+                x: first.x + space + first.width,
+                y: first.y,
+                width: first.width,
+                height: first.height
+            );
+            return new Rect[] {first, second};
+        }
+
+        private static Rect[] RowThreeSlices(Rect rect, float space = 5) {
+            var first = new Rect(
+                x: rect.x,
+                y: rect.y,
+                width: (rect.width - 2*space) / 3,
+                height: rect.height
+            );
+            var second = new Rect(
+                x: first.x + first.width + space,
+                y: rect.y,
+                width: first.width,
+                height: first.height
+            );
+            var third = new Rect(
+                x: second.x + second.width + space,
+                y: second.y,
+                width: second.width,
+                height: second.height
+            );
+            return new Rect[] {first, second, third};
+        }
+
+        private static Rect[] RowSafe(Rect rect, float[] weights, float[] widthes, float space = 5) {
             var cells = weights.Merge(widthes, (weight, width) => new Cell(weight, width)).Where( cell => cell.HasWidth);
 
             float weightUnit = GetWeightUnit(rect.width, cells, space);

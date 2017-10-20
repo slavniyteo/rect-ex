@@ -146,30 +146,57 @@ namespace RectEx {
 		public class SugarWithoutArraysSource : IEnumerable {
 			public IEnumerator GetEnumerator(){
 				yield return new object[] {
-					new Rect(x:0, y:0, width:100, height:100),
+					new Rect(x:-10, y:0, width:100, height:100),
 					1,
 					5,
 					new Rect[]{
-						new Rect(x:0, y:0, width:100, height:100)
+						new Rect(x:-10, y:0, width:100, height:100)
 					}
 				};
 				yield return new object[] {
-					new Rect(x:0, y:0, width:100, height:100),
+					new Rect(x:10, y:0, width:-100, height:100),
+					1,
+					5,
+					new Rect[]{
+						new Rect(x:-90, y:0, width:100, height:100)
+					}
+				};
+				yield return new object[] {
+					new Rect(x:-10, y:0, width:100, height:100),
 					2,
 					5,
 					new Rect[]{
-						new Rect(x:0, y:0, width:47.5f, height:100),
-						new Rect(x:52.5f, y:0, width:47.5f, height:100),
+						new Rect(x:-10, y:0, width:47.5f, height:100),
+						new Rect(x:42.5f, y:0, width:47.5f, height:100),
 					}
 				};
 				yield return new object[] {
-					new Rect(x:0, y:0, width:100, height:100),
+					new Rect(x:10, y:0, width:-100, height:100),
+					2,
+					5,
+					new Rect[]{
+						new Rect(x:-90, y:0, width:47.5f, height:100),
+						new Rect(x:-37.5f, y:0, width:47.5f, height:100),
+					}
+				};
+				yield return new object[] {
+					new Rect(x:-10, y:0, width:100, height:100),
 					3,
 					5,
 					new Rect[]{
-						new Rect(x:0, y:0, width:30, height:100),
-						new Rect(x:35, y:0, width:30, height:100),
-						new Rect(x:70, y:0, width:30, height:100)
+						new Rect(x:-10, y:0, width:30, height:100),
+						new Rect(x:25, y:0, width:30, height:100),
+						new Rect(x:60, y:0, width:30, height:100)
+					}
+				};
+				yield return new object[] {
+					new Rect(x:10, y:0, width:-100, height:100),
+					3,
+					5,
+					new Rect[]{
+						new Rect(x:-90, y:0, width:30, height:100),
+						new Rect(x:-55, y:0, width:30, height:100),
+						new Rect(x:-20, y:0, width:30, height:100)
 					}
 				};
 				yield return new object[] {
