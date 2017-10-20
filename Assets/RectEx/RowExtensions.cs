@@ -8,6 +8,10 @@ using RectEx.Internal;
 namespace RectEx {
 	public static class RowExtensions {
 
+        public static Rect[] Row(this Rect rect, int count, float space = 5){
+            return Row(rect, Enumerable.Repeat(1f, count), Enumerable.Repeat(0f, count), space);
+        }
+
 		public static Rect[] Row(this Rect rect, IEnumerable<float> weights, float space = 5){
 			return Row(rect, weights, null, space);
 		}
