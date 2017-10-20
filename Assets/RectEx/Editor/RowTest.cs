@@ -3,14 +3,57 @@ using UnityEditor;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using System.Linq;
 
 namespace RectEx {
 	public class RowTest {
 
+		protected virtual Rect PrepareRect(Rect rect){
+			return rect.Invert();
+		}
+		protected virtual Rect[] PreparetRects(Rect[] rects){
+			return rects.Select(x => x.Invert()).ToArray();
+		}
+
+		[Test]
+		public void ColumnSimpleTest(){
+			var rect = new Rect(10, 20, 10, 110);
+			float space = 5;
+			var weights = new float[] {1,1};
+			var widthes = new float[] {0,10};
+			var expected = new Rect[]{
+				new Rect(x:10, y:20, width:10, height:47.5f),
+				new Rect(x:10, y: 72.5f, width:10, height:57.5f)
+			};
+			var actual = rect.Column(weights, widthes, 5);
+			Assert.AreEqual(expected, actual);
+		}
+		[Test]
+		public void ColumnShugarTest(){
+			var rect = new Rect(10, 20, 10, 100);
+			float space = 5;
+			var expected = new Rect[]{
+				new Rect(x:10, y:20, width:10, height:47.5f),
+				new Rect(x:10, y: 72.5f, width:10, height:47.5f)
+			};
+			var actual = rect.Column(2,5);
+			Assert.AreEqual(expected, actual);
+		}
+
 		[Test]
 		[TestCaseSource(typeof(WeightsPassSource))]
-		public void WeightsPass(string caseName, Rect from, float[] weights, float space, Rect[] expected) {
+		public void RowWeightsPass(string caseName, Rect from, float[] weights, float space, Rect[] expected) {
 			var actual = from.Row(weights, space);
+			Assert.AreEqual(expected, actual);
+		}
+
+		[Test]
+		[TestCaseSource(typeof(WeightsPassSource))]
+		public void ColumnWeightsPass(string caseName, Rect from, float[] weights, float space, Rect[] expected) {
+			from = PrepareRect(from);
+			expected = PreparetRects(expected);
+
+			var actual = from.Column(weights, space);
 			Assert.AreEqual(expected, actual);
 		}
 
@@ -77,8 +120,18 @@ namespace RectEx {
 
 		[Test]
 		[TestCaseSource(typeof(WidthesPassSource))]
-		public void WidthesPass(string caseName, Rect from, float[] weights, float[] widthes, float space, Rect[] expected) {
+		public void RowWidthesPass(string caseName, Rect from, float[] weights, float[] widthes, float space, Rect[] expected) {
 			var actual = from.Row(weights, widthes, space);
+			Assert.AreEqual(expected, actual);
+		}
+
+		[Test]
+		[TestCaseSource(typeof(WidthesPassSource))]
+		public void ColumnWidthesPass(string caseName, Rect from, float[] weights, float[] widthes, float space, Rect[] expected) {
+			from = PrepareRect(from);
+			expected = PreparetRects(expected);
+
+			var actual = from.Column(weights, widthes, space);
 			Assert.AreEqual(expected, actual);
 		}
 
@@ -138,8 +191,17 @@ namespace RectEx {
 		}
 
 		[Test, TestCaseSource(typeof(SugarWithoutArraysSource))]
-		public void SugarWithoutArrays(Rect from, int count, float space, Rect[] expected){
+		public void RowSugarWithoutArrays(Rect from, int count, float space, Rect[] expected){
 			var actual = from.Row(count, space);
+			Assert.AreEqual(expected, actual);
+		}
+
+		[Test, TestCaseSource(typeof(SugarWithoutArraysSource))]
+		public void ColumnSugarWithoutArrays(Rect from, int count, float space, Rect[] expected){
+			from = PrepareRect(from);
+			expected = PreparetRects(expected);
+
+			var actual = from.Column(count, space);
 			Assert.AreEqual(expected, actual);
 		}
 
@@ -215,8 +277,13 @@ namespace RectEx {
 		}
 		
 		[Test, ExpectedException(typeof(System.ArgumentException))]
-		public void ExceptionOnUnsetWeights(){
+		public void RowExceptionOnUnsetWeights(){
 			new Rect(0,0,10,10).Row(null);
+		}
+
+		[Test, ExpectedException(typeof(System.ArgumentException))]
+		public void ColumnExceptionOnUnsetWeights(){
+			new Rect(0,0,10,10).Column(null);
 		}
 
 	}
