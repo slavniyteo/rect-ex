@@ -1,3 +1,4 @@
+#if UNITY_2017_1_OR_NEWER
 using System;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
@@ -62,3 +63,4 @@ namespace NUnit.Framework
         }
     }
 }
+#endif
