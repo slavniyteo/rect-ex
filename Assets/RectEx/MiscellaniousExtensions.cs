@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 using System.Linq;
-using RectEx.Internal;
+using UnityEngine;
 
 namespace RectEx {
 	public static class MiscellaniousExtensions {
@@ -25,6 +23,27 @@ namespace RectEx {
                 width: rect.height,
                 height: rect.width
             );
+        }
+
+        public static Rect Union(this Rect rect, params Rect[] other) {
+            if (other == null || other.Length == 0){
+                return rect;
+            }
+            else if (other.Length == 1 && other[0] == rect){
+                return rect;
+            }
+            else {
+                var xMin = Math.Min(rect.xMin, other.Select(x => x.xMin).Aggregate(Math.Min));
+                var yMin = Math.Min(rect.yMin, other.Select(x => x.yMin).Aggregate(Math.Min));
+                var xMax = Math.Max(rect.xMax, other.Select(x => x.xMax).Aggregate(Math.Max));
+                var yMax = Math.Max(rect.yMax, other.Select(x => x.yMax).Aggregate(Math.Max));
+                return Rect.MinMaxRect(
+                    xmin:xMin,
+                    xmax:xMax,
+                    ymin:yMin,
+                    ymax:yMax
+                );
+            }
         }
 
 	}

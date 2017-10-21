@@ -17,7 +17,6 @@ namespace RectEx {
 		[Test]
 		public void ColumnSimpleTest(){
 			var rect = new Rect(10, 20, 10, 110);
-			float space = 5;
 			var weights = new float[] {1,1};
 			var widthes = new float[] {0,10};
 			var expected = new Rect[]{
@@ -30,7 +29,6 @@ namespace RectEx {
 		[Test]
 		public void ColumnShugarTest(){
 			var rect = new Rect(10, 20, 10, 100);
-			float space = 5;
 			var expected = new Rect[]{
 				new Rect(x:10, y:20, width:10, height:47.5f),
 				new Rect(x:10, y: 72.5f, width:10, height:47.5f)

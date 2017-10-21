@@ -66,5 +66,51 @@ namespace RectEx {
 			}
 		}
 
+		[Test]
+		[TestCaseSource(typeof(UnionSource))]
+		public void Union(Rect from, Rect[] other, Rect expected) {
+			var actual = from.Union(other);
+			Assert.AreEqual(expected, actual);
+		}
+
+		class UnionSource : IEnumerable {
+			public IEnumerator GetEnumerator() {
+				yield return new object[] {
+					new Rect(x:0, y:0, width:100, height:100),
+					new Rect[] {
+						new Rect(x:90, y:90, width:20, height:20)
+					},
+					new Rect(x:0, y:0, width:110, height:110)
+				};
+				yield return new object[] {
+					new Rect(x:0, y:0, width:100, height:100),
+					new Rect[] {
+						new Rect(x:90, y:90, width:20, height:20),
+						new Rect(x:90, y:90, width:20, height:20)
+					},
+					new Rect(x:0, y:0, width:110, height:110)
+				};
+				yield return new object[] {
+					new Rect(x:0, y:0, width:100, height:100),
+					new Rect[] {
+						new Rect(x:90, y:90, width:20, height:20),
+						new Rect(x:190, y:190, width:20, height:20)
+					},
+					new Rect(x:0, y:0, width:210, height:210)
+				};
+				yield return new object[] {
+					new Rect(x:0, y:0, width:100, height:100),
+					null,
+					new Rect(x:0, y:0, width:100, height:100)
+				};
+				yield return new object[] {
+					new Rect(x:0, y:0, width:100, height:100),
+					new Rect[] {
+						new Rect(x:0, y:0, width:100, height:100)
+					},
+					new Rect(x:0, y:0, width:100, height:100)
+				};
+			}
+		}
 	}
 }
