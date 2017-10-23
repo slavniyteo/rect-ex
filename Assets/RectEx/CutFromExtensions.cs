@@ -5,21 +5,36 @@ namespace RectEx {
     public static class CutFromExtensions {
 
         public static Rect[] CutFromRight(this Rect rect, float width, float space = 5){
-            rect = rect.Abs();
-            float min = Math.Min(rect.xMin, rect.xMax - (space + width));
-
-            var first = Rect.MinMaxRect(
-                xmin:min,
-                xmax:rect.xMax - (space + width),
+            var second = Rect.MinMaxRect(
+                xmin:rect.xMax - width,
+                xmax:rect.xMax,
                 ymin:rect.yMin,
                 ymax:rect.yMax
-            ).Abs();
+            );
+            float min = Math.Min(rect.xMin, second.xMin - space);
+            var first = Rect.MinMaxRect(
+                xmin:min,
+                xmax:second.xMin - space,
+                ymin:rect.yMin,
+                ymax:rect.yMax
+            );
+            return new Rect[]{first, second};
+        }
+
+        public static Rect[] CutFromBottom(this Rect rect, float height, float space = 5){
             var second = Rect.MinMaxRect(
-                xmin:first.xMax + space,
+                xmin:rect.xMin,
                 xmax:rect.xMax,
-                ymin:first.yMin,
-                ymax:first.yMax
-            ).Abs();
+                ymin:rect.yMax - height,
+                ymax:rect.yMax
+            );
+            float min = Math.Min(rect.yMin, second.yMin - space);
+            var first = Rect.MinMaxRect(
+                xmin:rect.xMin,
+                xmax:rect.xMax,
+                ymin:min,
+                ymax:second.yMin - space
+            );
             return new Rect[]{first, second};
         }
 

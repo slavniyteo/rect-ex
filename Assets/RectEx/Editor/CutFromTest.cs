@@ -152,5 +152,54 @@ namespace RectEx {
             
 			}
 		}
+
+		[Test]
+		[TestCaseSource(typeof(CutFromBottomSource))]
+		public void CutFromBottom(Rect from, float width, float space, Rect[] expected) {
+			var actual = from.CutFromBottom(width, space);
+			Assert.AreEqual(expected, actual);
+		}
+
+		class CutFromBottomSource : IEnumerable {
+			public IEnumerator GetEnumerator() {
+				yield return new object[] {
+					new Rect(x:0, y:0, width:10, height:50),
+					7,
+					3,
+					new Rect[] {
+						new Rect(x:0, y:0, width:10, height:40),
+						new Rect(x:0, y:43, width:10, height:7)
+					}
+				};
+				yield return new object[] {
+					new Rect(x:0, y:0, width:10, height:50),
+					10,
+					-1,
+					new Rect[] {
+						new Rect(x:0, y:0, width:10, height:41),
+						new Rect(x:0, y:40, width:10, height:10)
+					}
+				};
+				yield return new object[] {
+					new Rect(x:0, y:0, width:10, height:50),
+					55,
+					5,
+					new Rect[] {
+						new Rect(x:0, y:-10, width:10, height:0),
+						new Rect(x:0, y:-5, width:10, height:55)
+					}
+				};
+				yield return new object[] {
+					new Rect(x:0, y:0, width:10, height:50),
+					55,
+					-15,
+					new Rect[] {
+						new Rect(x:0, y:0, width:10, height:10),
+						new Rect(x:0, y:-5, width:10, height:55)
+					}
+				};
+            
+			}
+		}
 	}
 }
