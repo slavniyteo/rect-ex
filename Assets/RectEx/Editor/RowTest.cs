@@ -172,7 +172,7 @@ namespace RectEx {
 				};
 				
 				yield return new object[] { 
-					"Negative width",
+					"Negative size",
 					new Rect(x: 10, y:-15, width:-110, height:100),
 					new float[] {4,2,1}, 
 					new float[] {10,10,10},
@@ -188,13 +188,13 @@ namespace RectEx {
 		}
 
 		[Test, TestCaseSource(typeof(SugarWithoutArraysSource))]
-		public void RowSugarWithoutArrays(Rect from, int count, float space, Rect[] expected){
+		public void RowSugarWithoutArrays(string name, Rect from, int count, float space, Rect[] expected){
 			var actual = from.Row(count, space);
 			Assert.AreEqual(expected, actual);
 		}
 
 		[Test, TestCaseSource(typeof(SugarWithoutArraysSource))]
-		public void ColumnSugarWithoutArrays(Rect from, int count, float space, Rect[] expected){
+		public void ColumnSugarWithoutArrays(string name, Rect from, int count, float space, Rect[] expected){
 			from = PrepareRect(from);
 			expected = PreparetRects(expected);
 
@@ -205,6 +205,7 @@ namespace RectEx {
 		public class SugarWithoutArraysSource : IEnumerable {
 			public IEnumerator GetEnumerator(){
 				yield return new object[] {
+					"Simple",
 					new Rect(x:-10, y:0, width:100, height:100),
 					1,
 					5,
@@ -213,6 +214,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Simple with negative size",
 					new Rect(x:10, y:0, width:-100, height:100),
 					1,
 					5,
@@ -221,6 +223,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Two pieses",
 					new Rect(x:-10, y:0, width:100, height:100),
 					2,
 					5,
@@ -230,6 +233,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Two pieses with negative size",
 					new Rect(x:10, y:0, width:-100, height:100),
 					2,
 					5,
@@ -239,6 +243,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Three pieses",
 					new Rect(x:-10, y:0, width:100, height:100),
 					3,
 					5,
@@ -249,6 +254,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Three pieses with negative size",
 					new Rect(x:10, y:0, width:-100, height:100),
 					3,
 					5,
@@ -259,6 +265,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Five pieses",
 					new Rect(x:0, y:0, width:120, height:100),
 					5,
 					5,

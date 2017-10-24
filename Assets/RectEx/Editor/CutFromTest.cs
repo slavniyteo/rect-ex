@@ -8,7 +8,7 @@ namespace RectEx {
 
 		[Test]
 		[TestCaseSource(typeof(CutFromRightSource))]
-		public void CutFromRight(Rect from, float width, float space, Rect[] expected) {
+		public void CutFromRight(string name, Rect from, float width, float space, Rect[] expected) {
 			var actual = from.CutFromRight(width, space);
 			Assert.AreEqual(expected, actual);
 		}
@@ -16,6 +16,7 @@ namespace RectEx {
 		class CutFromRightSource : IEnumerable {
 			public IEnumerator GetEnumerator() {
 				yield return new object[] {
+					"Simple",
 					new Rect(x:0, y:0, width:50, height:10),
 					7,
 					3,
@@ -25,6 +26,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Negative space",
 					new Rect(x:0, y:0, width:50, height:10),
 					10,
 					-1,
@@ -34,6 +36,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Width > rect.width",
 					new Rect(x:0, y:0, width:50, height:10),
 					55,
 					5,
@@ -43,6 +46,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Negative space AND width > rect.width",
 					new Rect(x:0, y:0, width:50, height:10),
 					55,
 					-15,
@@ -57,7 +61,7 @@ namespace RectEx {
 
 		[Test]
 		[TestCaseSource(typeof(CutFromLeftSource))]
-		public void CutFromLeft(Rect from, float width, float space, Rect[] expected) {
+		public void CutFromLeft(string name, Rect from, float width, float space, Rect[] expected) {
 			var actual = from.CutFromLeft(width, space);
 			Assert.AreEqual(expected, actual);
 		}
@@ -65,6 +69,7 @@ namespace RectEx {
 		class CutFromLeftSource : IEnumerable {
 			public IEnumerator GetEnumerator() {
 				yield return new object[] {
+					"Simple",
 					new Rect(x:0, y:0, width:50, height:10),
 					7,
 					3,
@@ -74,6 +79,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Negative space",
 					new Rect(x:0, y:0, width:50, height:10),
 					10,
 					-1,
@@ -83,6 +89,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Width > rect.width",
 					new Rect(x:0, y:0, width:50, height:10),
 					55,
 					5,
@@ -92,6 +99,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Negative space AND width > rect.width",
 					new Rect(x:0, y:0, width:50, height:10),
 					55,
 					-15,
@@ -106,7 +114,7 @@ namespace RectEx {
 
 		[Test]
 		[TestCaseSource(typeof(CutFromTopSource))]
-		public void CutFromTop(Rect from, float width, float space, Rect[] expected) {
+		public void CutFromTop(string name, Rect from, float width, float space, Rect[] expected) {
 			var actual = from.CutFromTop(width, space);
 			Assert.AreEqual(expected, actual);
 		}
@@ -114,6 +122,7 @@ namespace RectEx {
 		class CutFromTopSource : IEnumerable {
 			public IEnumerator GetEnumerator() {
 				yield return new object[] {
+					"Simple",
 					new Rect(x:0, y:0, width:10, height:50),
 					7,
 					3,
@@ -123,6 +132,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Negative space",
 					new Rect(x:0, y:0, width:10, height:50),
 					10,
 					-1,
@@ -132,6 +142,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Width > rect.width",
 					new Rect(x:0, y:0, width:10, height:50),
 					55,
 					5,
@@ -141,6 +152,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Negative space AND width > rect.width",
 					new Rect(x:0, y:0, width:10, height:50),
 					55,
 					-15,
@@ -155,7 +167,7 @@ namespace RectEx {
 
 		[Test]
 		[TestCaseSource(typeof(CutFromBottomSource))]
-		public void CutFromBottom(Rect from, float width, float space, Rect[] expected) {
+		public void CutFromBottom(string name, Rect from, float width, float space, Rect[] expected) {
 			var actual = from.CutFromBottom(width, space);
 			Assert.AreEqual(expected, actual);
 		}
@@ -163,6 +175,7 @@ namespace RectEx {
 		class CutFromBottomSource : IEnumerable {
 			public IEnumerator GetEnumerator() {
 				yield return new object[] {
+					"Simple",
 					new Rect(x:0, y:0, width:10, height:50),
 					7,
 					3,
@@ -172,6 +185,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Negative space",
 					new Rect(x:0, y:0, width:10, height:50),
 					10,
 					-1,
@@ -181,6 +195,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Width > rect.width",
 					new Rect(x:0, y:0, width:10, height:50),
 					55,
 					5,
@@ -190,6 +205,7 @@ namespace RectEx {
 					}
 				};
 				yield return new object[] {
+					"Negative space AND width > rect.width",
 					new Rect(x:0, y:0, width:10, height:50),
 					55,
 					-15,
