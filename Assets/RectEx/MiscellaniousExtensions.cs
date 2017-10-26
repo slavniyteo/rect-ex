@@ -46,5 +46,26 @@ namespace RectEx {
             }
         }
 
+        public static Rect Intend(this Rect rect, float border){
+            rect = rect.Abs();
+
+            var result = new Rect(
+                x:rect.x + border,
+                y: rect.y + border,
+                width: rect.width - 2*border,
+                height: rect.height - 2*border
+            );
+
+            if (result.width < 0){
+                result.x += result.width / 2;
+                result.width = 0;
+            }
+            if (result.height < 0){
+                result.y += result.height / 2;
+                result. height = 0;
+            }
+            return result;
+        }
+
 	}
 }

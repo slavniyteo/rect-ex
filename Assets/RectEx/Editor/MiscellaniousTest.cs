@@ -126,5 +126,59 @@ namespace RectEx {
 				};
 			}
 		}
+
+		[Test]
+		[TestCaseSource(typeof(IntendSource))]
+		public void Intend(string name, Rect from, float border, Rect expected) {
+			var actual = from.Intend(border);
+			Assert.AreEqual(expected, actual);
+		}
+
+		class IntendSource : IEnumerable {
+			public IEnumerator GetEnumerator() {
+				yield return new object[] {
+					"Simple", 
+					new Rect(x:0, y:0, width:100, height:100),
+					3,
+					new Rect(x:3, y:3, width:94, height:94)
+				};
+				yield return new object[] {
+					"Bound is less than width", 
+					new Rect(x:0, y:0, width:10, height:100),
+					6,
+					new Rect(x:5, y:6, width:0, height:88)
+				};
+				yield return new object[] {
+					"Bound is less than height", 
+					new Rect(x:0, y:0, width:100, height:10),
+					6,
+					new Rect(x:6, y:5, width:88, height:0)
+				};
+				yield return new object[] {
+					"Negative border", 
+					new Rect(x:0, y:0, width:100, height:100),
+					-3,
+					new Rect(x:-3, y:-3, width:106, height:106)
+				};
+				yield return new object[] {
+					"Negative Width", 
+					new Rect(x:0, y:0, width:-100, height:100),
+					3,
+					new Rect(x:-97, y:3, width:94, height:94)
+				};
+				yield return new object[] {
+					"Negative Height", 
+					new Rect(x:0, y:0, width:100, height:-100),
+					3,
+					new Rect(x:3, y:-97, width:94, height:94)
+				};
+				yield return new object[] {
+					"Negative position, border and Width and Height", 
+					new Rect(x:-10, y:-24, width:-100, height:-100),
+					-3,
+					new Rect(x:-113, y:-127, width:106, height:106)
+				};
+			}
+		}
 	}
 }
