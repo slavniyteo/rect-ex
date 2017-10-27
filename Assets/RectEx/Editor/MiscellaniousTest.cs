@@ -180,5 +180,41 @@ namespace RectEx {
 				};
 			}
 		}
+
+		[Test]
+		[TestCaseSource(typeof(ExtendSource))]
+		public void Extend(string name, Rect from, float border, Rect expected) {
+			var actual = from.Extend(border);
+			Assert.AreEqual(expected, actual);
+		}
+
+		class ExtendSource : IEnumerable {
+			public IEnumerator GetEnumerator() {
+				yield return new object[]{
+					"Zero rect",
+					new Rect(x:0, y:0, width:0, height:0),
+					7,
+					new Rect(x:-7, y:-7, width:14, height:14)
+				};
+				yield return new object[]{
+					"Negative border",
+					new Rect(x:10, y:20, width:100, height:110),
+					-17,
+					new Rect(x:27, y:37, width:66, height:76)
+				};
+				yield return new object[]{
+					"Negative width",
+					new Rect(x:0, y:30, width:-100, height:110),
+					7,
+					new Rect(x:-107, y:23, width:114, height:124)
+				};
+				yield return new object[]{
+					"Negative width with negative space",
+					new Rect(x:-10, y:20, width:110, height:-100),
+					-7,
+					new Rect(x:-3, y:-73, width:96, height:86)
+				};
+			}
+		}
 	}
 }

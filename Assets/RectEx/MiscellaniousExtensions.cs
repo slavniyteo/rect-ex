@@ -67,5 +67,15 @@ namespace RectEx {
             return result;
         }
 
+        public static Rect Extend(this Rect rect, float border){
+            rect = rect.Abs();
+            return new Rect(
+                x:rect.x - border,
+                y: rect.y - border,
+                width: rect.width + 2*border,
+                height: rect.height + 2*border
+            );
+        }
+
 	}
 }
