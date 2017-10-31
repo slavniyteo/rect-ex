@@ -60,24 +60,7 @@ Both of them provide two variants of usage:
   For example, use `rect.Raw(5);` and you will get a row of 5 cells;
 * pass to method array of floats and it will cut rect into differet pieces.  
   For example, use `rect.Raw(new float[]{1,5})` and you will get two cells: a small one and a big one.
-  
-```
-Rect rect = ...;
-+------------------------------------------------------------------------------+
-|                                                                              |
-+------------------------------------------------------------------------------+
-                                 (width = 80)
 
-var rects = rect.Row(10);
-+------++------++------++------++------++------++------++------++------++------+
-|   1  ||   2  ||   3  ||   4  ||   5  ||   6  ||   7  ||   8  ||   9  ||  10  | 
-+------++------++------++------++------++------++------++------++------++------+
-   (8)     (8)     (8)     (8)     (8)     (8)     (8)     (8)     (8)     (8)
+![Row Example](mdsrc/rect-ex-row.png)
 
-var rects = rect.Row(new float[] { 1, 2, 3, 4 });
-+------++--------------++----------------------++------------------------------+
-|   1  ||       2      ||           3          ||               4              |
-+------++--------------++----------------------++------------------------------+
-   (8)        (16)                 (24)                        (32)             
-
-```
+![Column Example](mdsrc/rect-ex-column.png)
