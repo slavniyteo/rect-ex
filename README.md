@@ -60,7 +60,48 @@ Both of them provide two variants of usage:
   For example, use `rect.Raw(5);` and you will get a row of 5 cells;
 * pass to method array of floats and it will cut rect into differet pieces.  
   For example, use `rect.Raw(new float[]{1,5})` and you will get two cells: a small one and a big one.
+  
+# What methods does it provide?
+
+* Row
+* Column
+* Grid
+* CutFrom
+* MoveTo
+* Intend
+* Extend
+* Union
+* Invert
+* Abs
+
+## Row
+
+Method `Row` slices rect into pieces with a vertical separators. Returns an array of pieces.
+
+There are two variants: you may pass to `Row` count of pieses or their relative weights. Look at the example.
 
 ![Row Example](mdsrc/rect-ex-row.png)
 
+## Column
+
+Method `Column` slices rect into pieces with a horizontal separators. Returns an array of pieces.
+
+There are two variants: you may pass to `Column` count of pieses or their relative weights. Look at the example.
+
 ![Column Example](mdsrc/rect-ex-column.png)
+
+## Grid
+
+## CutFrom
+
+## MoveTo
+
+## Intend
+
+## Extend
+
+## Union
+
+## Invert
+
+## Abs
