@@ -63,16 +63,16 @@ Both of them provide two variants of usage:
   
 # What methods does it provide?
 
-* Row
-* Column
-* Grid
-* CutFrom
-* MoveTo
-* Intend
-* Extend
-* Union
-* Invert
-* Abs
+* [Row](#row)
+* [Column](#column)
+* [Grid](#grid)
+* [CutFrom](#cutfrom)
+* [MoveTo](#moveto)
+* [Intend](#intend)
+* [Extend](#extend)
+* [Union](#union)
+* [Invert](#invert)
+* [Abs](#abs)
 
 ## Row
 
