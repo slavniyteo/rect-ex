@@ -76,6 +76,8 @@ Both of them provide two variants of usage:
 
 ## Row
 
+Makes a row based on your rect.
+
 Method `Row` slices rect into pieces with a vertical separators. Returns an array of pieces.
 
 There are two variants: you may pass to `Row` count of pieses or their relative weights. Look at the example.
@@ -83,6 +85,8 @@ There are two variants: you may pass to `Row` count of pieses or their relative 
 ![Row Example](mdsrc/rect-ex-row.png)
 
 ## Column
+
+Makes a column based on your rect.
 
 Method `Column` slices rect into pieces with a horizontal separators. Returns an array of pieces.
 
