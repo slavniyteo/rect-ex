@@ -1,8 +1,6 @@
 # Overview
 
-RectEx is an Unity3d asset. *But you will not find RectEx in the AssetStore, I'm going to publish it soon.*
-
-It is designed to make work with GUI easier. 
+RectEx is a tool for slicing Rects in Unity3d. RectEx consists of a few extensions of `Rect` class which provides an interface for simplify operating with rects. 
 
 Stop doing 
 
@@ -22,7 +20,6 @@ Use **Column** and **Row** instead:
 
 ```csharp
 var rects = rect.Column(3);
-
 GUI.LabelField(rects[0], "First line");
 GUI.LabelField(rects[1], "Second line");
 
@@ -30,6 +27,8 @@ rects = rects[2].Row(2);
 GUI.LabelField(rects[0], "Third line: left part");
 GUI.LabelField(rects[1], "Third line: right part");
 ```
+
+RectEx is an Unity3d asset. *But you will not find RectEx in the AssetStore, I'm going to publish it soon.*
 
 # Why do you need it?
 
@@ -40,6 +39,14 @@ Because you want to draw your GUI elements easy and feel self comfortable.
 Because you want to make your code more readable.
 
 Because you can.
+
+# Contributing
+
+If you want to add a bug report or feature request, just add an issue or PR. 
+
+If you create a pull request with new feature or bugfix, please write some tests.
+
+If you see some errors in this text, feel free to fix it.
 
 # How to use it?
 
@@ -78,9 +85,9 @@ Both of them provide two variants of usage:
 
 Makes a row based on your rect.
 
-Method `Row` slices rect into pieces with a vertical separators. Returns an array of pieces.
+Slices rect with a vertical separators. Returns an array of pieces.
 
-There are two variants: you may pass to `Row` count of pieses or their relative weights. Look at the example.
+There are two variants: you may pass to `Row` count of pieces or their relative weights. Look at the example.
 
 ![Row Example](mdsrc/rect-ex-row.png)
 
@@ -88,17 +95,51 @@ There are two variants: you may pass to `Row` count of pieses or their relative 
 
 Makes a column based on your rect.
 
-Method `Column` slices rect into pieces with a horizontal separators. Returns an array of pieces.
+Slices rect with a horizontal separators. Returns an array of pieces.
 
-There are two variants: you may pass to `Column` count of pieses or their relative weights. Look at the example.
+There are two variants: you may pass to `Column` count of pieces or their relative weights. Look at the example.
 
 ![Column Example](mdsrc/rect-ex-column.png)
 
 ## Grid
 
+Makes a grid based on your rect.
+
+Slices rect with a horizontal and vertical separators. Returns a 2d array of pieces (Rect[,])
+
+There are only one way: you may pass counts of rows and columns only.
+
+```csharp
+var rects = rect.Grid(3, 2, 5);
+
+// Now `rects` is an array Rect[3,2] of equal rects with space = 5 between them.
+```
+
 ## CutFrom
 
+Section CutFrom consists of four methods: CutFromRight, CutFromLeft, CutFromTop and CutFromBottom.
+
+CutFrom cuts a piece from one of four directions. Returns an array of two pieces: the cut and the rest.
+
+You can use `Row` and `Column` to get the same but CutFrom is easier, faster and  more readable.
+
+```csharp
+var rects = rect.CutFromLeft(25, 5);
+
+// Now `rects` is an array of two rects: piece of 25 and the rest.
+```
+
 ## MoveTo
+
+Section MoveTo like CutFrom consists of four methods: MoveRight, MoveLeft, MoveUp, MoveDown.
+
+MoveTo moves rect per its width/height. As same as using `rect.y += rect.height;`. Returns a rect.
+
+```csharp
+rect = rect.MoveDown(space);
+
+// The same as rect.y += rect.height + space; but looks better.
+```
 
 ## Intend
 
