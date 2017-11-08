@@ -143,10 +143,49 @@ rect = rect.MoveDown(space);
 
 ## Intend
 
+Intend creates a border inside rect. Returns a new Rect.
+
+```csharp
+rect = rect.Intend(1);
+
+// Now rect becomes smaller
+```
+
 ## Extend
+
+Extend creates a border outside the rect. Returns a new rect.
+
+```csharp
+rect = rect.Extend(1);
+
+// Now rect becomes bigger
+```
 
 ## Union
 
+Union creates a new rect, contains all rects you pass. Returns a new rect.
+
+```csharp
+var rect = rect1.Union(rect2, rect3, rect4);
+
+// Now rect contains rect1, rect2, rect3, rect4.
+```
+
 ## Invert
 
+Invert swaps x with y; width with height. Returns a new rect.
+
+```csharp
+var inverted = rect.Invert();
+
+// Now inverted.x == rect.y, inverted.height == rect.width, etc
+```
+
 ## Abs
+
+Abs returns the same rect with positive width and height.
+
+```csharp
+var abs = rect.abs();
+
+// Now abs.width >= 0 and abs.height >= 0, but abs == rect.
