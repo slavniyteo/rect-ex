@@ -72,7 +72,9 @@ Both of them provide two variants of usage:
   For example, use `rect.Raw(5);` and you will get a row of 5 cells;
 * pass to method array of floats and it will cut rect into differet pieces.  
   For example, use `rect.Raw(new float[]{1,5})` and you will get two cells: a small one and a big one.
-  
+
+Look at the tests. Tests are the best docs. But if you don't want read code, read below.
+
 # What methods does it provide?
 
 * [Row](#row)
