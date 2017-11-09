@@ -115,6 +115,8 @@ var rects = rect.Grid(3, 2, 5);
 // Now `rects` is an array Rect[3,2] of equal rects with space = 5 between them.
 ```
 
+![Grid Example](mdsrc/rect-ex-grid.png)
+
 ## CutFrom
 
 Section CutFrom consists of four methods: CutFromRight, CutFromLeft, CutFromTop and CutFromBottom.
@@ -129,6 +131,8 @@ var rects = rect.CutFromLeft(25, 5);
 // Now `rects` is an array of two rects: piece of 25 and the rest.
 ```
 
+![CutFrom Example](mdsrc/rect-ex-cutfrom.png)
+
 ## MoveTo
 
 Section MoveTo like CutFrom consists of four methods: MoveRight, MoveLeft, MoveUp, MoveDown.
@@ -141,6 +145,8 @@ rect = rect.MoveDown(space);
 // The same as rect.y += rect.height + space; but looks better.
 ```
 
+![MoveTo Example](mdsrc/rect-ex-moveto.png)
+
 ## Intend
 
 Intend creates a border inside rect. Returns a new Rect.
@@ -150,6 +156,8 @@ rect = rect.Intend(1);
 
 // Now rect becomes smaller
 ```
+
+![Intend example](mdsrc/rect-ex-intend.png)
 
 ## Extend
 
@@ -161,6 +169,8 @@ rect = rect.Extend(1);
 // Now rect becomes bigger
 ```
 
+![Extend example](mdsrc/rect-ex-extend.png)
+
 ## Union
 
 Union creates a new rect, contains all rects you pass. Returns a new rect.
@@ -170,6 +180,8 @@ var rect = rect1.Union(rect2, rect3, rect4);
 
 // Now rect contains rect1, rect2, rect3, rect4.
 ```
+
+![Union example](mdsrc/rect-ex-union.png)
 
 ## Invert
 
@@ -181,6 +193,8 @@ var inverted = rect.Invert();
 // Now inverted.x == rect.y, inverted.height == rect.width, etc
 ```
 
+![Invert example](mdsrc/rect-ex-invert.png)
+
 ## Abs
 
 Abs returns the same rect with positive width and height.
@@ -189,3 +203,6 @@ Abs returns the same rect with positive width and height.
 var abs = rect.abs();
 
 // Now abs.width >= 0 and abs.height >= 0, but abs == rect.
+```
+
+![Abs example](mdsrc/rect-ex-abs.png)
