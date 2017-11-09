@@ -1,6 +1,6 @@
 # Overview
 
-RectEx is a tool for slicing Rects in Unity3d. 
+RectEx is a tool for simplify work with GUI in [Unity3d](https://unity3d.com). 
 
 RectEx consists of a few extensions of `Rect` class which provides an interface for simplify operating with rects. 
 
