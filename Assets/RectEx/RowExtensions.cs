@@ -6,9 +6,9 @@ using System.Linq;
 using RectEx.Internal;
 
 namespace RectEx {
-	public static class RowExtensions {
+    public static class RowExtensions {
 
-	    private const float SPACE = 2f;
+        private const float SPACE = 2f;
 
         public static Rect[] Row(this Rect rect, int count, float space = SPACE){
             rect = rect.Abs();
@@ -30,11 +30,11 @@ namespace RectEx {
             }
         }
 
-		public static Rect[] Row(this Rect rect, float[] weights, float space = SPACE){
-			return Row(rect, weights, null, space);
-		}
+        public static Rect[] Row(this Rect rect, float[] weights, float space = SPACE){
+            return Row(rect, weights, null, space);
+        }
 
-		public static Rect[] Row(this Rect rect, float[] weights, float[] widthes, float space = SPACE) {
+        public static Rect[] Row(this Rect rect, float[] weights, float[] widthes, float space = SPACE) {
             if (weights == null){
                 throw new ArgumentException("Weights is null. You must specify it");
             }
@@ -135,5 +135,5 @@ namespace RectEx {
             }
         }
 
-	}
+    }
 }
