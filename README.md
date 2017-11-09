@@ -1,6 +1,8 @@
 # Overview
 
-RectEx is a tool for slicing Rects in Unity3d. RectEx consists of a few extensions of `Rect` class which provides an interface for simplify operating with rects. 
+RectEx is a tool for slicing Rects in Unity3d. 
+
+RectEx consists of a few extensions of `Rect` class which provides an interface for simplify operating with rects. 
 
 Stop doing 
 
@@ -19,6 +21,9 @@ GUI.LabelField(rect, "Third line: right part");
 Use **Column** and **Row** instead:
 
 ```csharp
+using RectEx;
+```
+```csharp
 var rects = rect.Column(3);
 GUI.LabelField(rects[0], "First line");
 GUI.LabelField(rects[1], "Second line");
@@ -32,7 +37,7 @@ RectEx is an Unity3d asset. *But you will not find RectEx in the AssetStore, I'm
 
 # Why do you need it?
 
-Because you don't want to get lost between all these `rect.y += rect.height` and `rect.width = (rect.width - 5) / 2`.
+Because you don't want to get lost between all these `rect.y += rect.height` and `rect.width = (rect.width - 5)/2`.
 
 Because you want to draw your GUI elements easy and feel self comfortable.
 
@@ -46,7 +51,7 @@ If you want to add a bug report or feature request, just add an issue or PR.
 
 If you create a pull request with new feature or bugfix, please write some tests.
 
-If you see some errors in this text, feel free to fix it.
+If you find any errors in this text, feel free to fix it.
 
 # How to use it?
 
@@ -87,7 +92,13 @@ Makes a row based on your rect.
 
 Slices rect with a vertical separators. Returns an array of pieces.
 
-There are two variants: you may pass to `Row` count of pieces or their relative weights. Look at the example.
+There are two variants: you may pass to `Row` count of pieces or their relative weights (with additive widthes).
+
+```csharp
+Rect[] Row(this Rect rect, int count, float space = DEFAULT_SPACE);
+Rect[] Row(this Rect rect, float[] weights, float space = DEFAULT_SPACE);
+Rect[] Row(this Rect rect, float[] weights, float[] widthes, float space = DEFAULT_SPACE);
+```
 
 ![Row Example](mdsrc/rect-ex-row.png)
 
@@ -97,7 +108,13 @@ Makes a column based on your rect.
 
 Slices rect with a horizontal separators. Returns an array of pieces.
 
-There are two variants: you may pass to `Column` count of pieces or their relative weights. Look at the example.
+There are two variants: you may pass to `Column` count of pieces or their relative weights (with additive heights).
+
+```csharp
+Rect[] Column(this Rect rect, int count, float space = DEFAULT_SPACE);
+Rect[] Column(this Rect rect, float[] weights, float space = DEFAULT_SPACE);
+Rect[] Column(this Rect rect, float[] weights, float[] heights, float space = DEFAULT_SPACE);
+```
 
 ![Column Example](mdsrc/rect-ex-column.png)
 
@@ -107,12 +124,12 @@ Makes a grid based on your rect.
 
 Slices rect with a horizontal and vertical separators. Returns a 2d array of pieces (Rect[,])
 
-There are only one way: you may pass counts of rows and columns only.
+There are two ways: you may pass a size of grid or separated counts of rows and columns.
 
 ```csharp
-var rects = rect.Grid(3, 2, 5);
-
-// Now `rects` is an array Rect[3,2] of equal rects with space = 5 between them.
+Rect[,] Grid(this Rect rect, int size, float space = DEFAULT_SPACE);
+Rect[,] Grid(this Rect rect, int rows, int columns, float space = DEFAULT_SPACE);
+Rect[,] Grid(this Rect rect, int rows, int columns, float spaceBetweenRows, float spaceBetweenColumns);
 ```
 
 ![Grid Example](mdsrc/rect-ex-grid.png)
@@ -126,9 +143,10 @@ CutFrom cuts a piece from one of four directions. Returns an array of two pieces
 You can use `Row` and `Column` to get the same but CutFrom is easier, faster and  more readable.
 
 ```csharp
-var rects = rect.CutFromLeft(25, 5);
-
-// Now `rects` is an array of two rects: piece of 25 and the rest.
+Rect[] CutFromRight(this Rect rect, float width, float space = DEFAULT_SPACE);
+Rect[] CutFromLeft(this Rect rect, float width, float space = DEFAULT_SPACE);
+Rect[] CutFromBottom(this Rect rect, float height, float space = DEFAULT_SPACE);
+Rect[] CutFromTop(this Rect rect, float height, float space = DEFAULT_SPACE);
 ```
 
 ![CutFrom Example](mdsrc/rect-ex-cutfrom.png)
@@ -140,9 +158,10 @@ Section MoveTo like CutFrom consists of four methods: MoveRight, MoveLeft, MoveU
 MoveTo moves rect per its width/height. As same as using `rect.y += rect.height;`. Returns a rect.
 
 ```csharp
-rect = rect.MoveDown(space);
-
-// The same as rect.y += rect.height + space; but looks better.
+Rect MoveRight(this Rect rect, float space = DEFAULT_SPACE);
+Rect MoveLeft(this Rect rect, float space = DEFAULT_SPACE);
+Rect MoveBottom(this Rect rect, float space = DEFAULT_SPACE);
+Rect MoveTop(this Rect rect, float space = DEFAULT_SPACE);
 ```
 
 ![MoveTo Example](mdsrc/rect-ex-moveto.png)
@@ -152,9 +171,7 @@ rect = rect.MoveDown(space);
 Intend creates a border inside rect. Returns a new Rect.
 
 ```csharp
-rect = rect.Intend(1);
-
-// Now rect becomes smaller
+Rect Intend(this Rect rect, float border);
 ```
 
 ![Intend example](mdsrc/rect-ex-intend.png)
@@ -164,9 +181,7 @@ rect = rect.Intend(1);
 Extend creates a border outside the rect. Returns a new rect.
 
 ```csharp
-rect = rect.Extend(1);
-
-// Now rect becomes bigger
+Rect Extend(this Rect rect, float border);
 ```
 
 ![Extend example](mdsrc/rect-ex-extend.png)
@@ -176,9 +191,7 @@ rect = rect.Extend(1);
 Union creates a new rect, contains all rects you pass. Returns a new rect.
 
 ```csharp
-var rect = rect1.Union(rect2, rect3, rect4);
-
-// Now rect contains rect1, rect2, rect3, rect4.
+Rect Union(this Rect rect, params Rect[] other);
 ```
 
 ![Union example](mdsrc/rect-ex-union.png)
@@ -188,9 +201,7 @@ var rect = rect1.Union(rect2, rect3, rect4);
 Invert swaps x with y; width with height. Returns a new rect.
 
 ```csharp
-var inverted = rect.Invert();
-
-// Now inverted.x == rect.y, inverted.height == rect.width, etc
+Rect Invert(this Rect rect);
 ```
 
 ![Invert example](mdsrc/rect-ex-invert.png)
@@ -200,9 +211,7 @@ var inverted = rect.Invert();
 Abs returns the same rect with positive width and height.
 
 ```csharp
-var abs = rect.abs();
-
-// Now abs.width >= 0 and abs.height >= 0, but abs == rect.
+Rect Abs(this Rect rect);
 ```
 
 ![Abs example](mdsrc/rect-ex-abs.png)
