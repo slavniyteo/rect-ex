@@ -81,7 +81,9 @@ Look at the tests. Tests are the best docs. But if you don't want to read code, 
 * [Column](#column)
 * [Grid](#grid)
 * [CutFrom](#cutfrom)
+* [FirstLine](#firstline)
 * [MoveTo](#moveto)
+* [MoveToFor](#movetofor)
 * [Intend](#intend)
 * [Extend](#extend)
 * [Union](#union)
@@ -153,6 +155,29 @@ Rect[] CutFromTop(this Rect rect, float height, float space = DEFAULT_SPACE);
 
 ![CutFrom Example](mdsrc/rect-ex-cutfrom.png)
 
+## FirstLine
+
+Method FirstLine is a sugar for `rect = rect.CutFromTop(height, 0)[0]`. 
+
+I noticed that I often use that construction so I just add FirstLine method to simplify my code.
+
+Threr is no _space_ because it returns single rect. 
+
+```csharp
+Rect FirstLine(this Rect rect, float height = 18);
+```
+
+I use FirstLine in this way:
+
+```csharp
+rect = rect.FirstLine(18);
+// Draw first line
+rect = rect.MoveDown();
+// Draw second line
+rect = rect.MoveDown();
+// Draw third line
+```
+
 ## MoveTo
 
 Section MoveTo like CutFrom consists of four methods: MoveRight, MoveLeft, MoveUp, MoveDown.
@@ -167,6 +192,21 @@ Rect MoveTop(this Rect rect, float space = DEFAULT_SPACE);
 ```
 
 ![MoveTo Example](mdsrc/rect-ex-moveto.png)
+
+## MoveToFor
+
+Section MoveToFor is like MoveTo, but allows you to specify size of step.
+
+MoveToFor moves rect per specified step. As same as using `rect.y += step;`. Returns a rect.
+
+```csharp
+Rect MoveRightFor(this Rect rect, float step, float space = DEFAULT_SPACE);
+Rect MoveLeftFor(this Rect rect, float step, float space = DEFAULT_SPACE);
+Rect MoveBottomFor(this Rect rect, float step, float space = DEFAULT_SPACE);
+Rect MoveTopFor(this Rect rect, float step, float space = DEFAULT_SPACE);
+```
+
+~~Sorry, there is no image yet~~
 
 ## Intend
 
