@@ -216,5 +216,40 @@ namespace RectEx {
                 };
             }
         }
+        [Test]
+        [TestCaseSource(typeof(FirstLineSource))]
+        public void FirstLine(string name, Rect from, float height, Rect expected) {
+            var actual = from.FirstLine(height);
+            Assert.AreEqual(expected, actual);
+        }
+
+        class FirstLineSource : IEnumerable {
+            public IEnumerator GetEnumerator() {
+                yield return new object[]{
+                    "Simple",
+                    new Rect(x:0, y:0, width:100, height:230),
+                    8,
+                    new Rect(x:0, y:0, width:100, height:8)
+                };
+                yield return new object[]{
+                    "Zero rect",
+                    new Rect(x:0, y:0, width:0, height:0),
+                    8,
+                    new Rect(x:0, y:0, width:0, height:8)
+                };
+                yield return new object[]{
+                    "Negative line height",
+                    new Rect(x:10, y:20, width:100, height:110),
+                    -17,
+                    new Rect(x:10, y:3, width:100, height:17)
+                };
+                yield return new object[]{
+                    "Negative rect height",
+                    new Rect(x:10, y:20, width:110, height:-100),
+                    17,
+                    new Rect(x:10, y:-80, width:110, height:17)
+                };
+            }
+        }
     }
 }
