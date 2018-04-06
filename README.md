@@ -257,3 +257,5 @@ Rect Abs(this Rect rect);
 ```
 
 ![Abs example](mdsrc/rect-ex-abs.png)
+
+*I niticed __Union()__ at the top of image. Don't panic! It is just a bug. This is an example of __Abs__ function. Sorry. I will repair it someday.*
