@@ -1,8 +1,10 @@
 # TL;DR
 
+Read about `RextEx` on [habr](https://habr.com/post/340858/) (ru).
+
 RectEx is a tool simplifying drawing EditorGUI (not *Layout*) elements with [Unity3d](https://unity3d.com). 
 
-RectEx consists of a bunch of `Rect` extensions, which provides an interface to work with rects easier. 
+RectEx consists of a bunch of `Rect` extensions, which provides an interface to work with rects easier.
 
 Stop doing 
 
