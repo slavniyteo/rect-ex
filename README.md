@@ -1,8 +1,8 @@
 # TL;DR
 
-RectEx is a tool simplifying drawing pure EditorGUI in [Unity3d](https://unity3d.com). 
+RectEx is a tool simplifying drawing EditorGUI (not *Layout*) elements with [Unity3d](https://unity3d.com). 
 
-RectEx consists of a few extensions of `Rect` class which provides an interface to work with rects simpler. 
+RectEx consists of a bunch of `Rect` extensions, which provides an interface to work with rects easier. 
 
 Stop doing 
 
@@ -33,7 +33,7 @@ GUI.LabelField(rects[0], "Third line: left part");
 GUI.LabelField(rects[1], "Third line: right part");
 ```
 
-RectEx is an Unity3d asset. *But you will not find RectEx in the AssetStore, I'm going to publish it soon.*
+RectEx is an Unity3d asset. *But you will not find RectEx in the AssetStore, I'll publish it one day.*
 
 # Why do you need it?
 
@@ -41,9 +41,9 @@ Because you don't want to get lost between all these `rect.y += rect.height` and
 
 Because you want to draw your GUI elements easily and feel yourself comfortable.
 
-Because you want to make your code more readable.
+Because you want to make your code readable.
 
-Because you can.
+Because you aren't afraid of trying new awesome things, are you?
 
 # Contributing
 
@@ -62,16 +62,16 @@ using RectEx;
 ```
 
 There are two base methods:
-* `rect.Column(...)` -- makes a column from your rect with horizontal lines.
-* `rect.Row(...)` -- makes a row with vertical lines.
+* `rect.Column(...)` -- slices your rect into an array of horizontal lines.
+* `rect.Row(...)` -- slices your rect into an array of vertical lines.
 
-There are other methods in RectEx, but Column and Row are the most useful.
+There are many other methods in RectEx, but Column and Row are the most useful.
 
 Both of them provide two variants of usage:
-* pass to method an integer **count** of slices and it will cut rect into equal pieces;  
-  For example, use `rect.Raw(5);` and you will get a row of 5 cells;
-* pass to method an array of floats and it will cut rect into differet pieces.  
-  For example, use `rect.Raw(new float[]{1,5})` and you will get two cells: a small one and a big one.
+* pass to method an integer **count** of slices to get an array of equal pieces;  
+  For example, `rect.Raw(5);` returns a row of 5 equal cells;
+* pass to method an array of floats to get an array of weighed pieces.  
+  For example, `rect.Raw(new float[]{1,5})` returns two cells: a small one and a big one.
 
 Look at the tests. Tests are the best docs. But if you don't want to read code, read below.
 
@@ -92,8 +92,6 @@ Look at the tests. Tests are the best docs. But if you don't want to read code, 
 
 ## Row
 
-Makes a row based on your rect.
-
 Slices rect with a vertical separators. Returns an array of pieces.
 
 There are two variants: you may pass to `Row` count of pieces or their relative weights (with additive widthes).
@@ -108,8 +106,6 @@ Rect[] Row(this Rect rect, float[] weights, float[] widthes, float space = DEFAU
 
 ## Column
 
-Makes a column based on your rect.
-
 Slices rect with a horizontal separators. Returns an array of pieces.
 
 There are two variants: you may pass to `Column` count of pieces or their relative weights (with additive heights).
@@ -123,8 +119,6 @@ Rect[] Column(this Rect rect, float[] weights, float[] heights, float space = DE
 ![Column Example](mdsrc/rect-ex-column.png)
 
 ## Grid
-
-Makes a grid based on your rect.
 
 Slices rect with a horizontal and vertical separators. Returns a 2d array of pieces (Rect[,])
 
@@ -258,4 +252,4 @@ Rect Abs(this Rect rect);
 
 ![Abs example](mdsrc/rect-ex-abs.png)
 
-*I niticed __Union()__ at the top of image. Don't panic! It is just a bug. This is an example of __Abs__ function. Sorry. I will repair it someday.*
+*I nitice __Union()__ at the top of image. Don't panic! It is just a bug. This is an example of __Abs__ function. Sorry. I will repair it someday.*
