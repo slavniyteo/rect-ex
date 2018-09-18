@@ -6,6 +6,11 @@ RectEx is a tool simplifying drawing EditorGUI (not *Layout*) elements with [Uni
 
 RectEx consists of a bunch of `Rect` extensions, which provides an interface to work with rects easier.
 
+![GitHub release](https://img.shields.io/github/release/slavniyteo/rect-ex.svg)
+![GitHub Release Date](https://img.shields.io/github/release-date/slavniyteo/rect-ex.svg)
+![Github commits (since latest release)](https://img.shields.io/github/commits-since/slavniyteo/rect-ex/latest.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/slavniyteo/rect-ex.svg)
+
 Stop doing 
 
 ```csharp
