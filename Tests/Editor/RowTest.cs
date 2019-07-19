@@ -280,14 +280,14 @@ namespace RectEx {
             }
         }
         
-        [Test, ExpectedException(typeof(System.ArgumentException))]
+        [Test]
         public void RowExceptionOnUnsetWeights(){
-            new Rect(0,0,10,10).Row(null);
+            Assert.Throws<System.ArgumentException>(() => new Rect(0,0,10,10).Row(null));
         }
 
-        [Test, ExpectedException(typeof(System.ArgumentException))]
+        [Test]
         public void ColumnExceptionOnUnsetWeights(){
-            new Rect(0,0,10,10).Column(null);
+            Assert.Throws<System.ArgumentException>(() => new Rect(0,0,10,10).Column(null));
         }
 
     }
