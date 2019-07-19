@@ -63,7 +63,7 @@ If you find any errors in this text, feel free to fix it.
 
 The preferrable way to install RectEx is [Unity Package Manager](https://docs.unity3d.com/Manual/Packages.html).
 
-To add RectEx to your Unity project, add following dependency to your `manifest.json` as described [here](https://docs.unity3d.com/Manual/upm-dependencies.html) and [here](https://docs.unity3d.com/Manual/upm-git.html). Use **master** or any version above **v0.4.0** because v0.4.0 and previos versions are not compatible with Unity Package Manager. 
+To add RectEx to your Unity project, add following dependency to your `manifest.json` as described [here](https://docs.unity3d.com/Manual/upm-dependencies.html) and [here](https://docs.unity3d.com/Manual/upm-git.html). Use **master** or any version above **v0.1.0** because v0.1.0 and previos versions are not compatible with Unity Package Manager. 
 
 ```json
 {
