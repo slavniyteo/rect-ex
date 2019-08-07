@@ -1,7 +1,7 @@
 # Rect Extensions
 
 Read about `RextEx` on [habr](https://habr.com/post/340858/) (ru).
-Extended docs at [Documentation](./Documentation/st.rect-ex.md) folder (according to [Unity Package Layout](https://docs.unity3d.com/Manual/cus-layout.html)). 
+Extended docs at [Documentation](./Documentation/README.md) folder (according to [Unity Package Layout](https://docs.unity3d.com/Manual/cus-layout.html)). 
 
 RectEx is a tool that simplify drawing EditorGUI (not *Layout*) elements with [Unity3d](https://unity3d.com). 
 
