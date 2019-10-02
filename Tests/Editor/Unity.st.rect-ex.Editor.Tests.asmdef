@@ -1,7 +1,7 @@
 {
     "name": "st.rect-ex.Editor.Tests",
     "references": [
-        "GUID:73c70a6eb6b6f444c878926f743350f6"
+        "st.rect-ex.Runtime"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
@@ -11,11 +11,10 @@
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [
-        ""
-    ],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": []
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ]
 }
