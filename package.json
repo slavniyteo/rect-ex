@@ -1,7 +1,7 @@
 {
   "name": "st.rect-ex",
   "displayName": "RectEx",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "unity": "2017.1",
   "description": "RectEx improves working with Rect class and drawing pure EditorGUI elements.",
   "keywords": [
